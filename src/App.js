@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+
+import "./App.css";
+// import { Chart } from 'chart.js'
+import Chart from 'chart.js/auto'
+
+import { fadeInUp } from 'react-animations'
+
+import ChartComp from "./components/ChartComp.js"
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import Deferred from 'chartjs-plugin-deferred';
+import data from "./components/data.js"
+
+
+import Hero from "./components/Hero.js"
+import Navbar from "./components/Navbar.js"
+import Footer from "./components/Footer.js"
+
+
+Chart.register(ChartDataLabels);
+Chart.register(Deferred);
+
+
 
 function App() {
+
+  const chartsmap = data.map(item =>{
+    return (
+      <ChartComp 
+        key = {item.id}
+        {...item}
+      />
+    )
+  })
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Hero className="fadeInUp"/>
+      <Navbar />
+      <section className="charts-list fadeInUp">
+        {chartsmap}
+      </section>
+      <Footer />
     </div>
   );
 }
