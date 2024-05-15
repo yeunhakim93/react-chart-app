@@ -1,4 +1,4 @@
-export default data = [
+const data = [
   {
     id: 1,
     type: "Line",
@@ -494,3 +494,5 @@ export default data = [
     },
   },
 ];
+
+export default data;
